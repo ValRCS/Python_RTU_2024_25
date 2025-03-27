@@ -19,8 +19,10 @@ currentYear = datetime.datetime.now().year
 
 
 2. Uzdevums
-Uzdod 3 jautājums par telpas platumu, garumu, augstumu
-Uzrāda cik liels būs telpas tilpums
+
+Uzdodied 3 jautājumus par telpas platumu, garumu, augstumu
+Uzrādiet cik liels būs telpas tilpums
+
 3. Uzdevums - Celsijs uz Farenheitu
 
 Uzrakstiet programmu, kas noprasa temperatūru pēc Celsija un izdrukā šo temperatūru pēc Farenheita skalas.
