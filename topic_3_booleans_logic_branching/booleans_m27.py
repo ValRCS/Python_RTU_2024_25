@@ -17,7 +17,7 @@ print(5 < 10)
 is_math_good = 2*2 < 5
 print("Is math still good?", is_math_good)
 
-a = 2
+a = 2  
 b = 4
 c = 5
 
