@@ -67,11 +67,12 @@ print(f"Outside the loop the value is i {i}")
 # another tool or approach is use of flags to control our loop
 is_job_active = True
 job_count = 0
-while is_job_active:
+MAX_JOBS = 10
+while is_job_active and job_count < MAX_JOBS:
     print(f"Doing something Job No. {job_count}")
     job_count += 1 # Python does not have ++ operator which is same as += 1
     user_input = input("is job done? enter y to finish")
-    if user_input == "y":
+    if user_input == "y": # for better UX would be to allow Y and other inputs to quit
         is_job_active = False
     # now we go back to start and check our flag
     
