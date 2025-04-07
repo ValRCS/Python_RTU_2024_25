@@ -9,8 +9,7 @@
 #     print("Sorry, you need to enter an integer!")
 #     # for now we would exit
 #     exit()
-
-# the big idea is to wrap our try except in a while loop
+ big idea is to wrap our try except in a while loop
 # we do not know when our users will get smart and enter what we want
 
 while True:
@@ -26,3 +25,21 @@ while True:
     
 # start real work
 print(f"Doing some real work with {my_integer}")
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
