@@ -115,7 +115,7 @@ print(name[:3]) # prints Val - because it is 1st to 3rd character
 
 # we can use negative indexes in the slice as well
 # let's get the last 3 characters of the string
-print(name[3:])
+print(name[3:]) # prints dis - because it is 4th to last character
 print(name[-3:]) # prints dis - because it is 4th to last character#
 # note if we did
 print(name[-3:-1]) # prints di - because it is 4th to end excluding last character
@@ -124,3 +124,67 @@ substance = "glaciālais konglumerāts"
 # let's get last 12 characters of the string
 print(substance[-12:]) # prints konglumerāts - because it is 12th to last character
 
+print(alphabet)
+# turns out slices have a step as well
+# we can use [start:end:step] to slice a string
+# let's get every second character of alphabet
+print(alphabet[::2]) # prints acegikmoqsuwy - because it is every second character
+# how about we start on 2nd letter and then print every second character
+
+print(alphabet[1::2]) # prints bdfhjlnprtvxz - because it is every second character starting from 2nd letter
+
+# how start at 3rd letter go until 20th letter and take every 4th character?
+print(alphabet[2:20:4]) # prints cgkos - because it is every 4th character starting from 3rd letter until 20th letter
+print(alphabet[2:19:4]) # prints cgkos - because it is every 4th character starting from 3rd letter until 20th letter
+print(alphabet[2:18:4]) # prints cgko - 
+print(alphabet[18]) # again the stop is exclusive - not included in output
+
+# we can use variables inside our slices
+start = 2
+end = 20
+step = 4
+print(alphabet[start:end:step]) # prints cgkos - because it is every 4th character starting from 3rd letter until 20th letter
+
+# we can also use negative step to reverse the string
+# let's reverse the string
+reverse_alphabet = alphabet[::-1] # prints zyxwvutsrqponmlkjihgfedcba - because it is reversed string
+print(reverse_alphabet)
+# of course I did not have to save it
+print(alphabet[::-1]) # prints zyxwvutsrqponmlkjihgfedcba - because it is reversed string
+# we could use other negative steps but those are rarely used
+
+# if I want my slices saved I need to assign them to a variable
+first_five = alphabet[:5] 
+print(first_five) # prints abcde - because it is first 5 characters
+
+# Existance Checking
+# now let's check if something exists in our alphabet
+# we can use in keyword to check if something exists in our string
+print("Is letter b in alphabet?", "b" in alphabet) # prints True - because b is in alphabet
+# we can check longer substrings as well
+print("is bcd in alphabet?", "bcd" in alphabet) # prints True - because bcd is in alphabet
+print("is Abba in alphabet?", "Abba" in alphabet) # prints False - because Abba is not in alphabet
+needle = "Abba"
+print("is Abba in alphabet?", needle in alphabet) # prints False - because Abba is not in alphabet
+# this is exact match - case sensitive!
+
+# how about looping?
+# let's go over my name again
+for c in name: # c is arbitrary name for the character in the string, could be any variable name
+    print(c) # prints each character in the name on a new line
+
+# how about getting index of each character?
+# we could use approach from other languages
+for i in range(len(name)): # i is index of the character in the string
+    print(f"Index {i} corresponds to {name[i]}") # prints each character in the name on a new line
+# Avoid the above approach in Python!
+
+# more Python would be to use enumerate
+# enumerate gives us index and value at the same time
+for i, c in enumerate(name): # i is index of the character in the string
+    print(f"Index {i} corresponds to {c} == {name[i]}") # prints each character in the name on a new line
+
+# let's use a loop to print a slice of my name by increasing character count
+for i in range(1, len(name) + 1): # i is index of the character in the string
+    print(name[:i]) # prints each character in the name on a new line
+    # note how I use i inside the slice notation
