@@ -265,3 +265,49 @@ for bad_char in bad_chars:
     clean_text = clean_text.replace(bad_char, "") # replace the bad character with empty string
     # print(clean_text) # print the cleaned text
 print("Cleaned", clean_text)
+
+# let's get back to our breakfast
+# we want to add letter s to our second word
+print(breakfast)
+print(breakfast[:10]+"sssss"+breakfast[10:]) # prints Auzu putras ar lāceņu ievārījumu - capitalizes first letter of each word
+breakfasts = breakfast[:10]+"s"+breakfast[10:] # prints Auzu putras ar lāceņu ievārījumu - capitalizes first letter of each word
+print(breakfasts) # prints Auzu putras ar lāceņu ievārījumu - capitalizes first letter of each word
+
+word_to_pluralize = "putra"
+putra_start = breakfast.index(word_to_pluralize) # get the index of the second word
+print(putra_start) # prints 5 - because it is 6th character
+# then we will need to add length of putra to the index
+putra_end = putra_start + len(word_to_pluralize) # get the index of the second word
+print(putra_end) # prints 10 - because it is 11th character
+
+# so let's add 😋 to start and 🥣 to putra end
+
+emo_breakfast = breakfast[:putra_start] + "😋" + breakfast[putra_start:putra_end] + "🥣" + breakfast[putra_end:]
+print(emo_breakfast)
+# we could have used f-strings for this
+also_emo_breakfast = f"{breakfast[:putra_start]}😋{breakfast[putra_start:putra_end]}🥣{breakfast[putra_end:]}"
+print(also_emo_breakfast)
+
+# now let's explore creating a new string by using a text buffer
+# this is pretty common approach
+# below part we could have done with replace
+# however this allows for more advanced logic
+buffer = ""
+for c in breakfast:
+    if c == "u":
+        buffer += "y" # add y to the buffer
+    else:
+        buffer += c # add character to the buffer
+print(buffer) # prints Azyz putra ar lāceņu ievārījumu - capitalizes first letter of each word
+
+
+# for example we coudl remove all emojis from emo_breakfast
+# emojis have ord() above 100_000
+buffer = ""
+for c in emo_breakfast:
+    if ord(c) > 100_000:
+        continue # skip the emoji
+    buffer += c # add character to the buffer
+
+print(buffer) # prints Auzu putras ar lāceņu ievārījumu - capitalizes first letter of each word
+
