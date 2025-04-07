@@ -311,3 +311,15 @@ for c in emo_breakfast:
 
 print(buffer) # prints Auzu putras ar lāceņu ievārījumu - capitalizes first letter of each word
 
+# let's do some cleaning
+dirty_city = "    Rīga Boldērāja \t \n "
+print(dirty_city) 
+# we can strip the whitespace from both sides
+clean_city = dirty_city.strip() # removes whitespace from both sides
+print(clean_city)
+# there is also rstrip and lstrip
+print(dirty_city.rstrip())
+print(dirty_city.lstrip()) # removes whitespace from left side
+
+
+
