@@ -1,0 +1,126 @@
+print("Hello strings!")
+# What are strings after all?
+# Strings are sequences of characters
+# Technically, strings are sequences of Unicode characters
+# Python does not have single-character type
+# Single characters are strings of length 1
+
+# Strings are immutable
+
+# let's start with some healthy food
+food = "salmon"
+# In Python there is no difference between single and double quotes
+# They are interchangeable
+drink = 'green tea'
+# let's print the food and drink variables
+print(food)
+print(drink)
+
+# we can use one quote inside another
+# for example, we can use single quotes inside double quotes
+# or double quotes inside single quotes
+# let's see some examples
+print("I love 'green tea'")
+print('I love "green tea"')
+
+# so what do we do if we want to use the same quote inside the string?
+# we can use the backslash to escape the quote
+# let's see some examples
+print('I love \'green tea\'') # note how the backslash is used to escape the single quote
+print("I love \"green tea\"") # note how the backslash is used to escape the double quote
+# there are other escaped characters in Python
+# for example, we can use \n to create a new line
+# there is \t also \t to create a tab
+# there is \rf to create a carriage return
+# there is \b to create a backspace - RARELY USED
+# there is \f to create a form feed - RARELY USED
+# of course there is \\ to create a backslash
+# let's see an example in one string
+print("I \tlove 'green tea'\nI love \"green tea\"")
+
+# if you do not want ANY escaping, you can use raw strings
+# raw strings are created by adding an r before the string
+# these can be useful if you are using regular expressions
+# let's see some example
+print(r"I \tlove 'green tea'\nI love \"green tea\"")
+
+# for multi-line strings, we can use triple quotes
+# triple quotes can be either single ''' or double quotes """
+# I can put escaped characters in triple quotes inside triple quotes
+some_long_string = """This is a long string
+that \tspans multiple lines
+and is very useful for long texts.
+I can use 'single quotes' and "double quotes" inside it
+without any escaping.
+The End."""
+print(some_long_string)
+
+# we already know about f-strings
+# we can use f-strings inside triple quotes
+# let's see an example
+recipe = """This is a recipe for {food} and {drink}
+It is very healthy and delicious.
+I love it.
+Start by cooking the {food} in a pan.
+Then drink the {drink} while you wait.
+Finally, enjoy your meal!"""
+
+print(recipe)
+
+# now let's start talking about indexing
+# to access a character in a string, we can use indexing
+# indexing starts at 0 !
+name = "Valdis"
+print(name[0]) # prints V
+# second character is at index 1
+print(name[1]) # prints a
+# how about the last character?
+print(name[5]) # prints s - because it is 6th character
+
+# how could we make this general?
+# let's get length of the string
+name_len = len(name)
+print(name_len) # prints 6
+
+# so we could do this to get the last character
+print(name[name_len - 1]) # prints s - because it is 6th character
+# ABOVE is not Pythonic way of doing this!
+# Instead Python has a special index -1
+# -1 means last character of the string
+print(name[-1]) # prints s - because it is 6th character
+alphabet = "abcdefghijklmnopqrstuvwxyz"
+# let's print the first character of the alphabet
+print(alphabet[0]) # prints a - because it is 1st character
+print(alphabet[-1]) # prints z - because it is 26th character
+# of course I could have used 25 instead of -1
+print(alphabet[25]) # prints z - beca   se it is 26th character
+
+# how about trying to exceed the length of the string?
+try:
+    print(name[6]) # IndexError: string index out of range because it is 7th character
+except IndexError as e:
+    print("IndexError: ", e)
+
+# Slicing
+# we might want to get more than one character from the string
+# we can do this using slicing
+# the next best thing since sliced bread!
+
+# In Python we use :[start:end] to slice a string
+# start is inclusive and end is exclusive
+# let's get the first 3 characters of the string
+print(name[0:3]) # prints Val - because it is 1st to 3rd character
+# turns out 0 is not needed
+print(name[:3]) # prints Val - because it is 1st to 3rd character
+
+# we can use negative indexes in the slice as well
+# let's get the last 3 characters of the string
+print(name[3:])
+print(name[-3:]) # prints dis - because it is 4th to last character#
+# note if we did
+print(name[-3:-1]) # prints di - because it is 4th to end excluding last character
+
+substance = "glaciālais konglumerāts"
+# let's get last 12 characters of the string
+print(substance[-12:]) # prints konglumerāts - because it is 12th to last character
+
