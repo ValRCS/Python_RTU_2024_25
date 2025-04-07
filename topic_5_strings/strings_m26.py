@@ -188,3 +188,80 @@ for i, c in enumerate(name): # i is index of the character in the string
 for i in range(1, len(name) + 1): # i is index of the character in the string
     print(name[:i]) # prints each character in the name on a new line
     # note how I use i inside the slice notation
+
+food = "kartupelis" 
+needle = "art"
+# let's check if needle is in food
+if needle in food:
+    print(f"{needle} is in {food}")
+else:
+    print(f"{needle} is NOT in {food}")
+
+bad_needle = "pele"
+# let's check if needle is in food
+if bad_needle in food:
+    print(f"{bad_needle} is in {food}")
+else:
+    print(f"{bad_needle} is NOT in {food}")
+
+# we can also find index of our substring in the string
+# we can use index or find methods for search
+art_index = food.index("art")
+print(art_index) # prints 1 - because it is 2nd character
+
+#  how about our bad_needle?
+# if we know that that there is a possibily of not finding the substring we put our index in try/except block
+try:
+    bad_index = food.index(bad_needle)
+    print(bad_index) # will not get to this part...
+except ValueError as e:
+    print(f"{bad_needle} is NOT in {food}")
+    print("ValueError: ", e)
+
+# if you prefer you can use another method - find
+# the difference is that find returns -1 if not found
+# let's see an example
+good_index = food.find(needle)
+print(good_index) # prints 1 - because it is 2nd character
+bad_index = food.find(bad_needle)
+print(bad_index) # prints -1 - because it is not found
+# now you could check with if else to see if it is -1 or not
+
+breakfast = "aUzu putra ar lāceņu ievārījumu"
+print(breakfast)
+# let's capitalize this
+print(breakfast.capitalize()) # prints Auzu putra ar lāceņu ievārījumu - capitalizes first letter of the string
+# note that this does not change breakfast
+# if we want to save this we use same(overwritting) or new variable
+cap_breakfast = breakfast.capitalize()
+print(cap_breakfast) # prints Auzu putra ar lāceņu ievārījumu - capitalizes first letter of the string
+# let's look at some more methods
+# we have title
+print(breakfast.title()) # prints Auzu Putra Ar Lāceņu Ievārījumu - capitalizes first letter of each word
+# there is also swapcase
+print(breakfast.swapcase()) # prints AuZU PUTRA AR LĀCEŅU IEVĀRĪJUMU - capitalizes first letter of each word
+# let's yell - ALL CAPS
+print(breakfast.upper()) # prints AUZU PUTRA AR LĀCEŅU IEVĀRĪJUMU - capitalizes first letter of each word
+# and we have lower too - quiet
+print(breakfast.lower()) # prints auzu putra ar lāceņu ievārījumu - capitalizes first letter of each word
+
+# how about some replace, let's replace u with y
+print(breakfast.replace("u", "y")) 
+# again if we need this new food we need to save it
+new_food = breakfast.replace("u", "y")
+print(new_food) # prints Azyz putra ar lāceņu ievārījumu - capitalizes first letter of each word
+
+# we can chain multiple commands
+super_food = breakfast.replace("u", "y").replace("ā", "a").replace("ē", "e").upper()
+print(super_food) 
+
+text_with_punctuation = "Sveika pasaule! Drīz vakariņas?...."
+
+# if we want to remove multiple characters we can use the following recipe
+bad_chars = ".!?;:,-" # could be letters or anything
+clean_text = text_with_punctuation # start with the original text
+for bad_char in bad_chars:
+    print("removing", bad_char)
+    clean_text = clean_text.replace(bad_char, "") # replace the bad character with empty string
+    # print(clean_text) # print the cleaned text
+print("Cleaned", clean_text)
