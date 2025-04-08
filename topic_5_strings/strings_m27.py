@@ -337,3 +337,9 @@ print(clean_city) # this will print the new string
 print(dirty_city.lstrip()) # this will remove all whitespace from the left side of the string
 # similarly rstrip will remove all whitespace from the right side of the string
 print(dirty_city.rstrip()) # this will remove all whitespace from the right side of the string
+
+# finally we have rfind for finding things from right side
+
+text = "Abracadabra maģija man, abra!"
+print(text.find("abra")) # this will return the index of the first occurrence of the substring in the string
+print(text.rfind("abra")) # this will return the index of the last occurrence of the substring in the string
