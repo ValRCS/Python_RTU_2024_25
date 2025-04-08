@@ -252,3 +252,88 @@ print() # this will print a new line
 for i, char in enumerate(alphabet):
     print(f"Index {i} letter -> {char} == {alphabet[i]}") # this will print each character in the string
 print() # this will print a new line
+
+breakfast = "Auzu putra ar bieZpienu" 
+print(breakfast)
+# let's make it all lower case - soo quietly
+print(breakfast.lower())
+# now let's be loud and make it all upper case - YELLL
+print(breakfast.upper())
+# again note breakfast is unchanged
+# this is because strings are immutable in Python
+print(breakfast)
+ALL_CAPS = breakfast.upper()
+print(ALL_CAPS)
+
+# we have more methods for strings
+# let's capitalize the string
+print("Capitalized:", breakfast.capitalize()) # this will capitalize the first character in the string
+# let's title case the string
+print("Title Case:", breakfast.title()) # this will capitalize the first character in each word in the string
+# let's swap case the string
+print("Swap Case:", breakfast.swapcase()) # this will swap case of each character in the string
+
+# it is very typical to go through string and build a new string based on some advanced logic
+# this is done using string concatenation
+# this is done using the + operator
+# we will use a blank buffer variable to build the string
+buffer = "" # buffer is just a common name for a variable that is used to build a string
+# let's loop through the string and build a new string based on some logic
+for c in breakfast:
+    # let's say we want to skip all spaces in the string
+    if c == " ":
+        continue
+    elif c == "z":
+        buffer += "AZA"
+    else:
+        buffer += c # this will build a new string based on the logic above
+
+print(buffer) # this will print the new string
+
+# we could use it to print all X's instead of letters
+buffer = ""
+for c in breakfast:
+    # let's say we want to skip all spaces in the string
+    if c == " ":
+        buffer += " "
+    else:
+        buffer += "X" # this will build a new string based on the logic above
+
+print(buffer) # this will print the new string
+
+# instead of using buffer and looping many of the above operations
+# can be done using built-in methods such as replace
+
+# let's replace all u with y
+new_breakfast = breakfast.replace("u", "y")
+# if I wanted to overwrite the breakfast variable I could do it like this
+# breakfast = breakfast.replace("u", "y")
+print(new_breakfast) # this will print the new string
+
+# let's see how we can use replace in conjuction with for loop
+# we have some bad chars that we want to get rid of
+# let's get rid of punctuation in our text
+sentence = "Hello, Pythonistas! How are you? My Name is 'Bob'...or maybe not"
+print(sentence) # this will print the original string
+bad_chars = "!@#$%^&*()_+-=[]{};':\"\\|,.<>?/~`"
+clean_sentence = sentence # i want to keep the original sentence intact
+for c in bad_chars:
+    clean_sentence = clean_sentence.replace(c, "") # this will replace all bad chars with empty string
+# let's see the clean sentence
+print(clean_sentence) # this will print the new string
+# note there is another way to do this with translation table
+
+# let's clean up the city
+
+dirty_city = "\t  \tRīga, Rīga, Rīga!  \n\t  \t"
+print(dirty_city) # this will print the original string
+
+# let's clean both sides with strip method
+clean_city = dirty_city.strip() # this will remove all whitespace from both sides of the string
+print(clean_city) # this will print the new string
+
+# we could only clean one side of the string using lstrip and rstrip methods
+# lstrip will remove all whitespace from the left side of the string
+print(dirty_city.lstrip()) # this will remove all whitespace from the left side of the string
+# similarly rstrip will remove all whitespace from the right side of the string
+print(dirty_city.rstrip()) # this will remove all whitespace from the right side of the string
