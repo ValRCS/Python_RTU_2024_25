@@ -5,4 +5,4 @@
 
 ## Apskatīsim string tipa datus
 
-## Apskatīsim kā strādat ar list (saraksts) tipa datiem
+## Apskatīsim kā strādat ar list (saraksts) tipa datiem - visticamāk nākamā lekcijā
