@@ -188,3 +188,67 @@ print(needle in alphabet)
 bad_needle = "burp"
 print(f"Is needle {bad_needle} in the string {alphabet}?")
 print(bad_needle in alphabet)
+
+# we could find exact index of the character in the string using find method
+# this will return the index of the first occurrence of the character in the string
+# if the character is not found it will return -1
+
+needle_index = alphabet.find(needle)
+print(f"Index of needle {needle} in the string {alphabet} is {needle_index}")
+# so I could use that to get where I should start
+print(f"Characters from {needle_index} to end of the string {alphabet} are {alphabet[needle_index:]}")
+# how about starting where the needle ends
+# then we simply need to add the length of the needle to the index
+# so we can do this by using the find method and len function
+print(f"Characters from {needle_index + len(needle)} to end of the string {alphabet} are {alphabet[needle_index + len(needle):]}")
+
+# how about about the bad needle?
+# this will return -1
+bad_needle_index = alphabet.find(bad_needle)
+if bad_needle_index == -1:
+    print(f"Needle {bad_needle} not found in the string {alphabet}")
+else:
+    print(f"Aliens have landed")
+
+# for strings we have an alternative to find method
+# we can use index method
+# this will return the index of the first occurrence of the character in the string
+# if the character is not found it will raise an error
+try:
+    bad_needle_index = alphabet.index(bad_needle)
+    # here we would know if we found the needle
+    print("This will not show if the needle is not found")
+except ValueError as e:
+    print(f"Needle {bad_needle} not found in the string {alphabet}")
+    print(f"ValueError: {e}")
+
+# okay we can check for existence of the needle in the string using in keyword
+# we can find the index of the needle in the string using find method
+
+# let's loop through the string
+
+# for that we use for loop using the in keyword
+# this will loop through each character in the string
+for char in alphabet:
+    print(char, end=",") # this will print each character in the string
+print() # this will print a new line
+
+# we can use slice inside the for loop to get substrings from the string
+# let's loop through only last 10 characters in the string
+for char in alphabet[-10:]:
+    print(char, end=",") # this will print each character in the string
+print() # this will print a new line
+
+# we can also use the range function to loop through the string
+# this will loop through each index in the string
+# this is not Pythonic but it is useful in some cases
+for i in range(len(alphabet)):
+    print(f"Index {i} letter -> {alphabet[i]}") # this will print each character in the string
+print() # this will print a new line
+
+# instead use the Pythonic approach 
+# we use enumerate function to loop through the string
+# this will loop through each index and character in the string
+for i, char in enumerate(alphabet):
+    print(f"Index {i} letter -> {char} == {alphabet[i]}") # this will print each character in the string
+print() # this will print a new line
