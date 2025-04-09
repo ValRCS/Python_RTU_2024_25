@@ -150,3 +150,53 @@ print() # prints new line
 name = "Valdis"
 name_list = list(name) # so we are creating a list from string
 print(name_list) # prints ['V', 'a', 'l', 'd', 'i', 's']
+
+# back to shopping list
+# how do we add new items without replacing existing items?
+# also we want to use existing list and not create a new one
+# we can use append method to add new items to the list
+
+# let's append something healthy again
+shopping_list.append("walnuts") # so we are adding new item to the end of the list
+print(shopping_list) # prints ['juice', 'coffee', 'bread', 'fruit', 'walnuts']
+# Note the syntax we used shopping_list.append("walnuts") - we are calling append method on the shopping_list object
+# this is so called IN-PLACE operation - we are modifying the existing object and not creating a new one
+# print new size
+print(f"Length of shopping_list: {len(shopping_list)}") # prints 5
+
+# there is an alternative way where we would recreate the  list using + operator
+shopping_list = shopping_list + ["soda"] # so we are creating a new list by adding new item to the existing list
+print(shopping_list) # prints ['juice', 'coffee', 'bread', 'fruit', 'walnuts', 'soda']
+# this is less efficient than using append method since we are creating a new list and copying all items to the new list
+# so we are creating a new list and not modifying the existing one
+
+# so unless I need a new list, append would be preferable
+
+# ok let's create a list of Latvian beers
+beer_list = ["Aldaris", "Cēsu", "Lāčplēsis", "Valmiermuiža", "Tērvetes"]
+print(beer_list) # prints ['Aldaris', 'Cēsu', 'Lāčplēsis', 'Valmiermuiža', 'Tērvetes']
+# let's add Labietis to the list
+beer_list.append("Labietis") # so we are adding new item to the end of the list
+print(beer_list) # prints ['Aldaris', 'Cēsu', 'Lāčplēsis', 'Valmiermuiža', 'Tērvetes', 'Labietis']
+
+# so now what happens if I add two beers at once with append?
+# let's try to append two beers at once
+beer_list.append(["Bauskas", "Brālis"]) # so we are adding new item to the end of the list
+print(beer_list) # prints ['Aldaris', 'Cēsu', 'Lāčplēsis', 'Valmiermuiža', 'Tērvetes', 'Labietis', ['Bauskas', 'Brālis']
+# so we added a list inside a list - nested, that might not be what we want here
+
+# let's fix this with a new method called pop
+# pop method removes the last item from the list and returns it - again IN-PLACE operation modifying the existing list
+mini_list = beer_list.pop() # so we are removing the last item from the list and storing it in a variable
+print(mini_list) # prints ['Bauskas', 'Brālis']
+# print beer list again
+print(beer_list) # prints ['Aldaris', 'Cēsu', 'Lāčplēsis', 'Valmiermuiža', 'Tērvetes', 'Labietis']
+
+# so let's use extend method to add two beers at once
+# extend method adds items from another list to the end of the list
+# so we can use it to add multiple items at once
+beer_list.extend(mini_list) # so we are adding items from mini_list to the end of the beer_list
+print(beer_list) # prints ['Aldaris', 'Cēsu', 'Lāčplēsis', 'Valmiermuiža', 'Tērvetes', 'Labietis', 'Bauskas', 'Brālis']
+
+# so again difference between append and extend is that append adds a single item to the end of the list and extend adds multiple items from another list to the end of the list
+# so we can use append to add a single item and extend to add multiple items at once
