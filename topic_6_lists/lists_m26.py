@@ -200,3 +200,150 @@ print(beer_list) # prints ['Aldaris', 'Cēsu', 'Lāčplēsis', 'Valmiermuiža', 
 
 # so again difference between append and extend is that append adds a single item to the end of the list and extend adds multiple items from another list to the end of the list
 # so we can use append to add a single item and extend to add multiple items at once
+
+# let's get rid of first item in the list
+# again we can use pop method to remove the first item from the list
+# but we need to specify the index of the item we want to remove
+beer_list.pop(0) # so we are removing the first item from the list
+print(beer_list) # prints ['Cēsu', 'Lāčplēsis', 'Valmiermuiža', 'Tērvetes', 'Labietis', 'Bauskas', 'Brālis']
+# generally popping from end of the list is more efficient than popping from the beginning of the list since we don't need to shift all items in the list
+
+# add Brengulis right after Cēsu now
+# we can use insert method to add an item at a specific index in the list
+# so we need to specify the index and the item we want to add
+beer_list.insert(1, "Brengulis") # so we are adding new item to the list at index 1
+# in effect Brengulis becomes 2nd item in the list
+# again this is IN-PLACE means we modify the list!
+print(beer_list) # prints ['Cēsu', 'Brengulis', 'Lāčplēsis', 'Valmiermuiža', 'Tērvetes', 'Labietis', 'Bauskas', 'Brālis']
+# again on large lists insertions in beginning of the list are less efficient than in the end of the list since we need to shift all items in the list
+
+# so let's say we added an extra Brengulis by mistake
+# first let's insert it somewhere again
+beer_list.insert(3, "Brengulis") # so we are adding new item to the list at index 3
+print(beer_list) # prints ['Cēsu', 'Brengulis', 'Lāčplēsis', 'Brengulis', 'Valmiermuiža', 'Tērvetes', 'Labietis', 'Bauskas', 'Brālis']
+# now we want to remove it from the list
+# so let's find it first
+
+# so just like for strings we can use index
+first_brengulis_index = beer_list.index("Brengulis") # so we are getting the index of the first item in the list
+print(first_brengulis_index) # prints 1
+# how about getting next one?
+second_brengulis_index = beer_list.index("Brengulis", first_brengulis_index + 1) # so we are getting the index of the first item in the list starting from index 2
+print(second_brengulis_index) # prints 3
+# let's append one more at the end
+beer_list.append("Brengulis") # so we are adding new item to the end of the list
+print(beer_list) # prints ['Cēsu', 'Brengulis', 'Lāčplēsis', 'Brengulis', 'Valmiermuiža', 'Tērvetes', 'Labietis', 'Bauskas', 'Brālis', 'Brengulis']
+# so now we have 3 of them
+
+# let's create a list of all indexes that Brengulis is present in the list
+brengulis_index_list = [] # so we are creating an empty list to store the indexes
+for i, beer in enumerate(beer_list): # so we are iterating over the list and getting the index and the item
+    if beer == "Brengulis": # so we are checking if the item is Brengulis
+        brengulis_index_list.append(i) # so we are adding the index to the list
+print(brengulis_index_list) # prints [1, 3, 9]
+
+# so now let's remove first two Brengulis from the list
+# we can use pop method to remove the item at the index we found earlier
+# so let's go through first 2 items in brengulis_index_list and remove them from the list
+for i in brengulis_index_list[:2][::-1]: # so we are iterating over the list and getting the index
+    print(f"Removing index {i} from beer_list") # prints Removing index 1 from beer_list and Removing index 3 from beer_list
+    beer_list.pop(i) # so we are removing the item at the index from the list
+# careful if you go in order
+# you should use reverse order here!
+print(beer_list) # prints ['Cēsu', 'Lāčplēsis', 'Valmiermuiža', 'Tērvetes', 'Labietis', 'Bauskas', 'Brālis', 'Brengulis']
+
+# above is not the most efficient example plus we have extra steps
+
+# we also have remove method which removes the first occurrence of the item from the list
+# so let's recreate our beer_list with 3 Brengulis again
+beer_list = ['Cēsu', 'Brengulis', 'Lāčplēsis', 'Brengulis', 'Valmiermuiža', 'Tērvetes', 'Labietis', 'Bauskas', 'Brālis', 'Brengulis']
+print(beer_list) # prints ['Cēsu', 'Brengulis', 'Lāčplēsis', 'Brengulis', 'Valmiermuiža', 'Tērvetes', 'Labietis', 'Bauskas', 'Brālis', 'Brengulis']
+
+# let's count how many Brengulis we have
+print(f"We have {beer_list.count('Brengulis')} Brengulis") # prints We have 3 Brengulis
+
+# so let's keep removing  until we have count of 1
+how_many_to_keep = 1
+while beer_list.count("Brengulis") > how_many_to_keep: # so we are checking if we have more than 1 Brengulis
+    beer_list.remove("Brengulis") # so we are removing the first occurrence of the item from the list
+
+# note this is not the most efficent for large lists but very simple to understand
+
+print(beer_list) 
+
+# question was how to erase first and last occurance
+# then we could use pop method to remove the first and last occurrence of the item from the list
+# again since pop modifies the list we need to be careful with the indexes
+# we would want to pop in reverse order
+# so pop last occurence index
+# then pop first occurence index 
+
+# now how about getting all the beers that start with letter B
+# standard recipe
+b_beers = []
+for beer in beer_list:
+    if beer.startswith("B"): # use whatever logic necessary to filter the list
+        b_beers.append(beer) # so we are adding the item to the list
+print(b_beers) 
+
+# Later 
+
+# how about sorting a list?
+# we have two approaches here
+# we can use OUT OF PLACE sorted method which returns a new sorted list
+# or we can use IN PLACE sort method which modifies the existing list
+new_sorted_list = sorted(beer_list) # so we are creating a new sorted list from the existing list
+print("NEW LIST SORTED:", new_sorted_list) 
+# original list is unchanged
+print("OLD UNSORTED LIST:", beer_list) 
+# next step will modify the original list
+# so let's sort the original list in place
+beer_list.sort() # so we are sorting the existing list in place
+print("OLD LIST SORTED:", beer_list)
+
+# We can supply custom key function to both sorted and sort methods
+# so let's sort the list by length of the beer name
+sorted_by_len = sorted(beer_list, key=len) # so we are creating a new sorted list from the existing list by length of the beer name
+print("NEW LIST SORTED BY LENGTH:", sorted_by_len)
+
+some_numbers = [4,2,7,-2,6]
+sorted_numbers = sorted(some_numbers) # so we are creating a new sorted list from the existing list
+print("SOME NUMBERS SORTED:", sorted_numbers) # prints [-2, 2, 4, 6, 7]
+print("ORIGINAL NUMBERS:", some_numbers) # prints [4, 2, 7, -2, 6]
+# sort in place again
+some_numbers.sort() # so we are sorting the existing list in place
+print("SOME NUMBERS SORTED IN PLACE:", some_numbers) # prints [-2, 2, 4, 6, 7]
+
+# okay let's create a small 2-d list of beers and their prices and alcohol content
+# so we can use a list of lists to store the data
+beer_price_alcohol = [
+    ["Aldaris", 1.5, 4.5],
+    ["Cēsu", 1.2, 4.0],
+    ["Lāčplēsis", 1.8, 5.0],
+    ["Valmiermuiža", 2.0, 4.8],
+    ["Tērvetes", 1.6, 4.5],
+    ["Labietis", 2.5, 5.5],
+    ["Bauskas", 1.3, 4.2],
+    ["Brālis", 1.7, 4.9]
+]
+# note one downside to this approach we have to know exact index of the item we want to access
+
+# but let's sort them by price and by alcohol content
+sorted_by_price = sorted(beer_price_alcohol, key=lambda item: item[1]) # so we are creating a new sorted list from the existing list by price
+print("NEW LIST SORTED BY PRICE:", sorted_by_price) # prints [['Cēsu', 1.2, 4.0], ['Bauskas', 1.3, 4.2], ['Aldaris', 1.5, 4.5], ['Tērvetes', 1.6, 4.5], ['Brālis', 1.7, 4.9], ['Lāčplēsis', 1.8, 5.0], ['Valmiermuiža', 2.0, 4.8], ['Labietis', 2.5, 5.5]]
+
+# so sort by alcohol content but in reverse order
+sorted_by_alcohol = sorted(beer_price_alcohol, key=lambda item: item[2], reverse=True) # so we are creating a new sorted list from the existing list by alcohol content in reverse order
+print("SORTED BY ALCOHOL:", sorted_by_alcohol) # prints [['Labietis', 2.5, 5.5], ['Lāčplēsis', 1.8, 5.0], ['Valmiermuiža', 2.0, 4.8], ['Tērvetes', 1.6, 4.5], ['Aldaris', 1.5, 4.5], ['Brālis', 1.7, 4.9], ['Cēsu', 1.2, 4.0], ['Bauskas', 1.3, 4.2]]
+
+# QUICK and DIRTY 2d printing
+print(*sorted_by_alcohol, sep="\n") # prints the sorted list in an ok format
+
+# let's use a little trick to pretty print our list of beers
+# we will unroll our outer list and print each inner list on a new line
+print("BEER LIST:")
+for beer in beer_price_alcohol:
+    print(f"{beer[0]:<20} {beer[1]:<5} {beer[2]:<5}") # so we are using f-string to format the output
+
+
+
