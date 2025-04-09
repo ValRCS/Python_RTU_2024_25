@@ -345,5 +345,24 @@ print("BEER LIST:")
 for beer in beer_price_alcohol:
     print(f"{beer[0]:<20} {beer[1]:<5} {beer[2]:<5}") # so we are using f-string to format the output
 
+# finally we have clear method that simply removes all items but leaves empty list
+# before that we might want to make a copy of the list
+
+beer_list_alias = beer_list # this is NOT a copy just a refence to the original list
+print(beer_list_alias) # prints ['Cēsu', 'Brengulis', 'Lāčplēsis', 'Valmiermuiža', 'Tērvetes', 'Labietis', 'Bauskas', 'Brālis']
+beer_list_copy = beer_list.copy() # so we are creating a copy of the list
+print(beer_list_copy) # prints ['Cēsu', 'Brengulis', 'Lāčplēsis', 'Valmiermuiža', 'Tērvetes', 'Labietis', 'Bauskas', 'Brālis']
+# so let's clear the list
+beer_list.clear() # so we are clearing the list
+print("ORIGINAL", beer_list) # prints []
+# so we have empty list now
+# but we still have our copy
+print("COPY", beer_list_copy) # prints ['Cēsu', 'Brengulis', 'Lāčplēsis', 'Valmiermuiža', 'Tērvetes', 'Labietis', 'Bauskas', 'Brālis']
+# why not use = operator to copy the list?
+# answer = just creates a shortcut / alias to the original list
+# print alias - it should be empty as well
+print("ALIAS", beer_list_alias) # prints []
+# now I could either make another copy or assign copy to original as new alias
+
 
 
