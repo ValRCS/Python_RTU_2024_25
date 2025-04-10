@@ -1,5 +1,7 @@
 # Lists in Python
 
+Sākam lekciju 18:00
+
 ## Lecture Plan
 
 ### git in Visual Studio Code
