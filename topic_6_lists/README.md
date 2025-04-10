@@ -2,6 +2,10 @@
 
 Sākam lekciju 18:00
 
+* Apskatīsim mājas darbu
+* Apskatīsim git pamatus
+* Apskatīsim sarakstus Pythonā
+
 ## Lecture Plan
 
 ### git in Visual Studio Code
