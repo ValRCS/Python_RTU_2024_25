@@ -83,6 +83,23 @@ def go_eat(diner, cuisine):
     order_food(cuisine)
 
 # now let's go to some restaurant and order some food
-go_eat("Ausmenys", "kebabs")
+# go_eat("Ausmenys", "kebabs")
 
-print("Should be pretty full")
+# print("Should be pretty full")
+
+# let's make a function that takes a list of restaurants and a list of foods
+# then goes and eats at each restaurant and orders each food
+def go_eat_multiple(restaurants, foods):
+    print(f"Going to eat at {len(restaurants)} restaurants and order {len(foods)} foods")
+    for restaurant in restaurants:
+        for food in foods:
+            go_eat(restaurant, food)
+
+restaurant_list = ["Ausmenys", "McDonalds", "Burger King"]
+food_list = ["kebabs", "burgers", "fries"]
+
+# now let's go to some restaurant and order some food
+go_eat_multiple(restaurant_list, food_list)
+
+# should be really full
+print("Should be really full")
