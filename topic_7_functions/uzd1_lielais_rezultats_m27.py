@@ -51,4 +51,25 @@ some_numbers = [5,6,10,2,3]
 print(add_mult_list(some_numbers)) # 50
 print(add_mult_list([1,2,3])) # 9
 
+# let's make a function that returns an integer
+# it asks a custom prompt to the user and checks if the input is an integer
+def get_integer(prompt = "Lūdzu ievadiet veselu skaitli ", 
+                error_msg = "Kļūda, netika ievadīts vesels skaitlis.") -> int:
+    """This function takes a prompt as input and returns an integer.
+    The function takes two parameters:
+    prompt ->> str
+    error_msg ->> str
+    The function keeps asking the user for input until a valid integer is entered."""
+    while True:
+        try:
+            return int(input(prompt))
+        # so idea is that return is not perform if int throws an error
+        except ValueError:
+            print(error_msg)
+
+number_1 = get_integer()
+number_2 = get_integer("Ievadiet otro skaitli: ")
+number_3 = get_integer("Ievadiet trešo skaitli: ")
+
+print(add_mult(number_1, number_2, number_3)) 
 
