@@ -97,4 +97,62 @@ def eat_and_drink(entree, liquid): # we are passing a parameter to the function,
 # let's call the function with two parameters
 eat_and_drink("pizza", "juice") # this is a function call, we are calling the function we just defined
 
-print("Should be full hopefully")
+# now let's make a function that eats and drinks lots of things from lists
+def eat_and_drink_multiples(entrees, liquids): # we are passing a parameter to the function, this is called an argument
+    # entree and liquid variables are available only in this scope
+    # they are not available outside of this function
+    # this is called local scope
+    print(f"Will eat {entrees} and drink {liquids}")
+    # I want to call eat and drink
+    # for nested lists
+    for entree in entrees: # this is a for loop, we are iterating over the list of entrees
+        for liquid in liquids: # this is a for loop, we are iterating over the list of liquids
+            eat_and_drink(entree, liquid)
+    print("Done eating and drinking")
+
+food_list = ["pizza", "kebab", "sushi"]
+drink_list = ["water", "green tea"]
+
+# let's call the function with two parameters
+# eat_and_drink_multiples(food_list, drink_list) # this is a function call, we are calling the function we just defined
+# print("Should be full hopefully")
+
+# let's make a function that prints addition of two numbers
+def print_add(a, b):
+    result = a + b # this is a local variable, it is only available in this function
+    print(f"The result of {a} + {b} is {result}")
+    # in Python functions return None by default
+
+print_add(5,9) # this is a function call, we are calling the function we just defined
+
+# in the above print_add function we are not returning anything!
+# we have no easy way of storing the result of the addition
+
+# instead let's make an add function
+def add(a, b):
+    result = a + b # this is a local variable, it is only available in this function
+    # i could do more stuff here including adjusting result..
+    return result # we are returning the result of the addition
+# this is called a return value
+
+print(add(7,3)) # this is a function call, we are calling the function we just defined
+
+# I could immediately return something
+# let's make multiply function
+def multiply(a, b):
+    return a * b # we are returning the result of the multiplication
+# this is called a return value
+
+not_result = print_add(10,5)
+print(f"This is not a result: {not_result}") # this will print None because print_add does not return anything
+
+# but we can use the result of the multiply function and add function as well
+add_result = add(7,3)
+multiply_result = multiply(7,3)
+print(f"Add result: {add_result}")
+print(f"Multiply result: {multiply_result}")
+
+# now I gain ability to compose functions within function
+
+add_multiply_result = add(multiply(10,8), add(5,2))
+print(f"Add multiply result: {add_multiply_result}")
