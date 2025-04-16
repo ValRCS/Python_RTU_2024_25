@@ -189,4 +189,118 @@ for city_name, population in latvian_cities.items():
     if population < 60000:
         small_cities[city_name] = population
 
+# above could have been done with dictionary comprehension
+also_small_cities = {k: v for k, v in latvian_cities.items() if v < 60000}
+
+# just like with lists we use dictionary comprehension for simple cases
+# for more complicated cases we use loops like above
+
+# now let's see difference between alias and copy
+
+latvian_cities_alias = latvian_cities # just like with lists NOT a copy of the dictionary
+latvian_cities_backup = latvian_cities.copy() # this is a copy of the dictionary
+
+# let's go through original latvian_cities and delete small cities under 60000
+# this is O(n) time complexity - linear time
+for city_name, population in latvian_cities.copy().items():
+    if population < 60000:
+        del latvian_cities[city_name] # this also affects latvian_cities_alias !
+
+# after deletion let's see our dictionaries
+print(latvian_cities)  
+print(latvian_cities_alias)  
+# now our backkup
+print("BACKUP", latvian_cities_backup)  
+
+# now I could clear original\
+latvian_cities.clear() # this will clear the dictionary
+# let's print the dictionary again
+print(latvian_cities)  # prints {}
+print(latvian_cities_alias)  # prints {}
+print(latvian_cities_backup)  # prints {'Rīga': 632614, 'Daugavpils': 97000, 'Liepaja': 82000, 'Jelgava': 55000, 'Jurmala': 50000, 'Ventspils': 35000, 'Tukums': 20000}
+
+# now I can just point original to the backup
+latvian_cities = latvian_cities_backup # this is just a reference to the backup dictionary
+# let's print the dictionary again
+print(latvian_cities)  # prints {'Rīga': 632614, 'Daugavpils': 97000, 'Liepaja': 82000, 'Jelgava': 55000, 'Jurmala': 50000, 'Ventspils': 35000, 'Tukums': 20000}
+
+# then we have an update method
+# this methods add key-value pairs from another dictionary to the current dictionary
+# it will overwrite existing keys
+mini_cities = {
+    "Aizkraukle": 5000,
+    "Alūksne": 4000,
+    "Balvi": 3000,
+    "Bauska": 2000,
+    "Cēsis": 1000,
+    "Varakļāni": 500,
+    "Daugavpils": 1000, # this will overwrite the previous value
+}
+
+latvian_cities.update(mini_cities) # this will add all key-value pairs from mini_cities to latvian_cities
+# let's print the dictionary again
+print(latvian_cities)  # prints {'Rīga': 632614, 'Daugavpils': 1000, 'Liepaja': 82000, 'Jelgava': 55000, 'Jurmala': 50000, 'Ventspils': 35000, 'Tukums': 20000, 'Aizkraukle': 5000, 'Alūksne': 4000, 'Balvi': 3000, 'Bauska': 2000, 'Cēsis': 1000, 'Varakļāni': 500}
+
+# now let's reverse a dictionary
+# but first let's filter it to tiny cities less than 5000
+tiny_cities = {k: v for k, v in latvian_cities.items() if v < 5000}
+# let's print the dictionary again
+print(tiny_cities)  # prints 
+# now let's make a new reverse dictionary
+
+# reverse_tiny_cities = {v: k for k, v in tiny_cities.items()}
+# same us loop
+reverse_tiny_cities = {}
+for city, pop in tiny_cities.items():
+    reverse_tiny_cities[pop] = city # note the reversal of key and value
+# let's print the new dictionary
+print(reverse_tiny_cities) 
+# now I can look up city by population
+# so which city has population 3000
+print(f"City with population 3000: {reverse_tiny_cities[3000]}")  # prints City with population 3000: Balvi
+
+# one downside with this reversal we lost some data
+# so if we have two or more cities with same population we will lose one of them
+# instead we could use a list of cities with same population
+# so let's create a new dictionary with list of cities with same population
+
+new_tiny_cities_by_pop = {}
+# let's loop through the tiny_cities dictionary and add cities to the new dictionary
+# this is O(n) time complexity - linear time
+for city, pop in tiny_cities.items():
+    if pop not in new_tiny_cities_by_pop: # so i look if my new diction is using value from old dict
+        new_tiny_cities_by_pop[pop] = [city] # create a list with first city
+    else:
+        new_tiny_cities_by_pop[pop].append(city) # add city to the value which is a list
+
+# let's print the new dictionary
+print(new_tiny_cities_by_pop)  
+
+# typical use of dictionaries is in conjuction with lists
+
+# this translates well to retrieval from various databases where keys are column names
+# let's have a list of dictionaries that represents Latvian beers with their names, prices and alcohol content as keys
+
+latvian_beers = [
+    {"name": "Aldaris", "price": 1.5, "alcohol": 5.0},
+    {"name": "Cēsu", "price": 1.2, "alcohol": 4.5},
+    {"name": "Lāčplēsis", "price": 1.8, "alcohol": 6.0},
+    {"name": "Rīgas", "price": 1.3, "alcohol": 5.2},
+    {"name": "Valmiermuiža", "price": 2.0, "alcohol": 4.8},
+    {"name": "Tērvetes", "price": 1.6, "alcohol": 5.5},
+    {"name": "Zelta", "price": 1.4, "alcohol": 4.7},
+    {"name": "Bauskas", "price": 1.7, "alcohol": 5.3},
+]
+
+# i use * to unroll the list of dictionaries and then print them one by one
+print(*latvian_beers, sep="\n")  # prints the list of dictionaries
+
+# now let's sort them by price in ascending order
+# to do so I will pass key to the sorted function
+sorted_by_price = sorted(latvian_beers, key=lambda beer: beer["price"])
+# let's print the sorted list
+print("Sorted by price:")
+for beer in sorted_by_price:
+    print(f"{beer['name']}: {beer['price']} EUR, {beer['alcohol']}%")  # prints the sorted list of beers by price
+
 
