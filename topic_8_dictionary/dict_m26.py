@@ -303,4 +303,4 @@ print("Sorted by price:")
 for beer in sorted_by_price:
     print(f"{beer['name']}: {beer['price']} EUR, {beer['alcohol']}%")  # prints the sorted list of beers by price
 
-
+# we could have a dictionary of dictionaries and other data types
