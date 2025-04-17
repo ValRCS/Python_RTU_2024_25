@@ -206,3 +206,183 @@ for key, value in phone_dict.items():  # key and value are just names for the va
 # i could have named the key person and value phone_number for example
 for person, phone_number in phone_dict.items():  # key and value are just names for the variables
     print(person, "--->", phone_number)  # prints all keys AND values in the dictionary
+
+# so far we only used str to string as keys and values in the dictionary
+# but values can be any valid data type
+
+# let's create a dictionary of biggest Latvian cities
+# with keys being city names and values being population numbers
+# we will use integers for population numbers
+# and strings for city names
+# again keys have to be unique or only last value will be kept in the dictionary
+# so if we have two cities with the same name, only last one will be kept in the dictionary
+latvian_cities = {
+    "Rīga": 632614, # this entry will be overwritten by next Rīga entry
+    "Daugavpils": 82000,
+    "Liepaja": 82000,
+    "Jelgava": 55000,
+    "Ventspils": 35000,
+    "Rīga": 632611, # this is the winning entry for Rīga
+}
+print(latvian_cities)  # prints {'Rīga': 632611, 'Daugavpils': 82000, 'Liepaja': 82000, 'Jelgava': 55000, 'Ventspils': 35000}
+
+# if we add new population to Daugavpils, it will be overwritten
+latvian_cities["Daugavpils"] = 82001  # updates the value for the key "Daugavpils" by overwriting it
+print(latvian_cities)  # prints {'Rīga': 632611, 'Daugavpils': 82001, 'Liepaja': 82000, 'Jelgava': 55000, 'Ventspils': 35000}
+
+# we could have used in keyword to check if city exists in the dictionary before changing value
+# instead we could use setdefault method to set default value for the key if it does not exist
+# this method returns the value of the key that was set or the default value if key does not exist
+
+# let's add Tukums
+# we can use setdefault method to add a new key-value pair to the dictionary
+latvian_cities.setdefault("Tukums", 20000)  # adds a new key-value pair to the dictionary
+print(latvian_cities)  # prints {'Rīga': 632611, 'Daugavpils': 82001, 'Liepaja': 82000, 'Jelgava': 55000, 'Ventspils': 35000, 'Tukums': 20000}
+
+# now let's try again setdefault for Tukums with 25000
+# this will not change the value for Tukums because it already exists in the dictionary
+latvian_cities.setdefault("Tukums", 25000)  # does not modify dictionary if key already exists in the dictionary
+print(latvian_cities)  # prints {'Rīga': 632611, 'Daugavpils': 82001, 'Liepaja': 82000, 'Jelgava': 55000, 'Ventspils': 35000, 'Tukums': 20000}
+
+# let's create another dictionary of smaller Latvian cities
+small_latvian_cities = {
+    "Rēzekne": 25000,
+    "Jūrmala": 30000,
+    "Ogre": 20000,
+    "Talsi": 15000,
+    "Cēsis": 12000,
+    "Tukums": 15000
+}
+print(small_latvian_cities)  # prints {'Rēzekne': 25000, 'Jūrmala': 30000, 'Ogre': 20000, 'Talsi': 15000, 'Cēsis': 12000}
+
+# we can merge these dictionaries with update method
+# this will add all key-value pairs from small_latvian_cities to latvian_cities
+# if any duplicates are found, they will be overwritten by last value in the dictionary
+latvian_cities.update(small_latvian_cities)  # merges two dictionaries
+# small_latvian_cities will not change but latvian_cities will be updated
+print(latvian_cities)  # prints {'Rīga': 632611, 'Daugavpils': 82001, 'Liepaja': 82000, 'Jelgava': 55000, 'Ventspils': 35000, 'Tukums': 15000, 'Rēzekne': 25000, 'Jūrmala': 30000, 'Ogre': 20000, 'Talsi': 15000, 'Cēsis': 12000}
+
+# creating new dictionary by going through existing one
+# it is very typical to filter some dictionary by some criteria
+
+# so similar to lists we start with empty dictionary
+filtered_cities = {}  # creates an empty dictionary
+# let's get cities that have population less than 25000
+# we can use a for loop to go through the dictionary and check the population
+for city, population in latvian_cities.items():  # key and value are just names for the variables
+    if population < 25000:  # checks if population is less than 25000
+        filtered_cities[city] = population  # adds the city to the new dictionary
+
+# this is a very common pattern when working with dictionaries
+print(filtered_cities)
+
+# there is a more concise way to do this using dictionary comprehension
+# this is similar to list comprehension but for dictionaries
+# syntax is:
+# {key: value for key, value in dictionary if condition}
+# so we can do the same thing as above in one line
+also_filtered_cities = {city: population for city, population in latvian_cities.items() if population < 25000}
+
+# so which approach to use?
+# for simple cases we can use dictionary comprehension
+# for more complex cases we can use for loop
+# this is a matter of preference and readability
+
+# now let's talk about copy and alias
+
+# just like with lists which are  mutable = is NOT a copy!
+# to create a so called shallow copy we can use copy() method
+# this will create a new dictionary with the same key-value pairs
+latvian_cities_alias = latvian_cities  # this is an alias, not a copy!
+latvian_cities_copy = latvian_cities.copy()  # this is a shallow copy of the dictionary
+# let's print them and see the difference
+print(f"latvian_cities: {latvian_cities}")  # prints {'Rīga': 632611, 'Daugavpils': 82001, 'Liepaja': 82000, 'Jelgava': 55000, 'Ventspils': 35000, 'Tukums': 15000, 'Rēzekne': 25000, 'Jūrmala': 30000, 'Ogre': 20000, 'Talsi': 15000, 'Cēsis': 12000}
+print(f"latvian_cities_alias: {latvian_cities_alias}")  # prints {'Rīga': 632611, 'Daugavpils': 82001, 'Liepaja': 82000, 'Jelgava': 55000, 'Ventspils': 35000, 'Tukums': 15000, 'Rēzekne': 25000, 'Jūrmala': 30000, 'Ogre': 20000, 'Talsi': 15000, 'Cēsis': 12000}
+print(f"latvian_cities_copy: {latvian_cities_copy}")  # prints {'Rīga': 632611, 'Daugavpils': 82001, 'Liepaja': 82000, 'Jelgava': 55000, 'Ventspils': 35000, 'Tukums': 15000, 'Rēzekne': 25000, 'Jūrmala': 30000, 'Ogre': 20000, 'Talsi': 15000, 'Cēsis': 12000}
+
+# now let's adjust Population of Riga in alias 
+# we will use += to increase the population of Rīga by 15
+latvian_cities_alias["Rīga"] += 15  # increases the population of Rīga by 15
+# let's print them again and see the difference
+
+# let's just print Rīga for all 3
+print(f"latvian_cities: {latvian_cities['Rīga']}")  # prints 632626
+print(f"latvian_cities_alias: {latvian_cities_alias['Rīga']}")  # prints 632626
+print(f"latvian_cities_copy: {latvian_cities_copy['Rīga']}")  # prints 632611
+# so we can see that alias and original dictionary are the same
+
+# if we are using loop to change size (delete or add key-value pairs) of the dictionary 
+# then we should use copy() method to create a copy of the dictionary for looping
+# otherwise we might get unpredictable results
+for city_name, population in latvian_cities.copy().items(): # so I create a temporary copy here
+    if population < 50000:
+        del latvian_cities[city_name]  # deletes the city from the original dictionary
+
+# this is a common pattern when working with dictionaries
+# so let's see our dictionaries now
+print(f"latvian_cities: {latvian_cities}")  # prints {'Rīga': 632626, 'Daugavpils': 82001, 'Liepaja': 82000, 'Jelgava': 55000, 'Ventspils': 35000, 'Tukums': 15000, 'Rēzekne': 25000, 'Jūrmala': 30000, 'Ogre': 20000, 'Talsi': 15000, 'Cēsis': 12000}
+print(f"latvian_cities_alias: {latvian_cities_alias}")  # prints {'Rīga': 632626, 'Daugavpils': 82001, 'Liepaja': 82000, 'Jelgava': 55000, 'Ventspils': 35000, 'Tukums': 15000, 'Rēzekne': 25000, 'Jūrmala': 30000, 'Ogre': 20000, 'Talsi': 15000, 'Cēsis': 12000}
+print(f"latvian_cities_copy: {latvian_cities_copy}")  # prints {'Rīga': 632611, 'Daugavpils': 82001, 'Liepaja': 82000, 'Jelgava': 55000, 'Ventspils': 35000, 'Tukums': 15000, 'Rēzekne': 25000, 'Jūrmala': 30000, 'Ogre': 20000, 'Talsi': 15000, 'Cēsis': 12000}
+
+# now let's look at small latvian cities again
+print(small_latvian_cities)  
+# how about filtered ones?\
+print(filtered_cities)
+
+# let's reverse our filtered_cities
+reverse_filtered_cities = {}
+# now I simply loop through filtered_cities and add them to reverse_filtered_cities
+for city, population in filtered_cities.items():  # key and value are just names for the variables
+    reverse_filtered_cities[population] = city  # note how I use populataion(the value) as key in new dictionary
+
+# let's look at our new reverse_filtered_cities
+print(reverse_filtered_cities)  
+print("City with 15000 population", reverse_filtered_cities[15000])  # prints Talsi
+
+# so let's learn recipe for reversing keys and values that keep all reversed keys in a list
+# this is a bit more complex but not too bad
+reversed_filtered_cities_with_list = {}
+# so let's loop and if value has not been yet added as a key, we add it as a key and value as a list with city name
+# otherwise we append the city name to the list of cities
+for city, population in filtered_cities.items():  # key and value are just names for the variables
+    if population not in reversed_filtered_cities_with_list:  # checks if population is not in the dictionary
+        reversed_filtered_cities_with_list[population] = [city]  # adds the city to the new dictionary
+    else:
+        reversed_filtered_cities_with_list[population].append(city)  # adds the city to the list of cities
+
+# let's look at our new reversed_filtered_cities_with_list
+print(reversed_filtered_cities_with_list)
+
+# another typical use is to have a list of dictionaries for similar items
+# this could represent a list of students with their names and grades for example
+
+# this is how we could import or export data to databases and or csv files etc.
+# keys would represent column names
+
+# let's use Latvian beers as an example
+# we have a list of beers
+# each beer is a dictionary with name, price and alcohol content
+
+latvian_beers = [
+    {"name": "Aldaris", "price": 1.50, "alcohol": 5.0},
+    {"name": "Cēsu", "price": 1.80, "alcohol": 4.5},
+    {"name": "Lāčplēsis", "price": 2.00, "alcohol": 4.8},
+    {"name": "Rīgas", "price": 1.70, "alcohol": 5.2},
+    {"name": "Valmiermuiža", "price": 2.50, "alcohol": 5.5}
+]
+
+# let's print them
+for beer in latvian_beers: # latviant_beers is a list and beer is a dictionary
+    # let's print them nicely using f-strings
+    print(f"{beer['name']} - {beer['price']} EUR - {beer['alcohol']}%")
+# this is a very common pattern when working with lists of dictionaries
+
+# now I may want to sort this list by say price
+# I simply pass what I want it sorted by
+sorted_by_price = sorted(latvian_beers, key=lambda beer: beer["price"])
+# lambda is a so called anonymous function - function with no name
+
+# now let's print the sorted beers
+for beer in sorted_by_price: # latviant_beers is a list and beer is a dictionary
+    # let's print them nicely using f-strings
+    print(f"{beer['name']} - {beer['price']} EUR - {beer['alcohol']}%")
