@@ -113,3 +113,131 @@ blank_book.content = "This is a book about a wizard"
 # by using arbitrary attributes we lose a bit of the structure and safety of the class
 # but this is also a feature of Python - it is very flexible and dynamic
 blank_book.print_info() # Title: Harry Potter, Author: J.K. Rowling
+
+# now let's make a bigger class with more attributes and methods
+# let's make a class called Book with more attributes and methods
+
+# this class will have attributes - data and methods - functions for working with the data
+class Book:
+    # this is a special method that is called when we create an object of the class
+    # it is used to initialize the attributes of the class
+    def __init__(self, title="", 
+                 author="", 
+                 year=None, 
+                 genre=None, 
+                 pages=0, 
+                 publisher=None):
+        print("Creating a new book object")
+        self.title = title
+        self.author = author
+        self.year = year
+        self.genre = genre
+        self.pages = pages
+        self.publisher = publisher
+        # print(f'Book object created with title: {self.title} and author: {self.author}')
+        print("Created a new book object")
+        # i can call my other methods here
+        self.print_info() # so methods know about each other
+
+    # let's define one more special method - __str__
+    # this method is called when we print the object
+    # only requirement is that __str__ returns a string
+    def __str__(self):
+        # this method will return a string representation of the object
+        # this is what will be printed when we print the object
+        return f'Book Title: {self.title}, Author: {self.author}, Year: {self.year}, Genre: {self.genre}, Pages: {self.pages}, Publisher: {self.publisher}'
+    
+    # full list of dunder methods is here https://docs.python.org/3/reference/datamodel.html#special-method-names
+
+    # kind of silly example 
+    # but let's define __add__ for our class
+    # this method is called when we use the + operator on the objects of the class
+    # we will will add or concatanate all attributes of the two books
+    def __add__(self, other):
+        # this method will return a new object of the class Book with the attributes of the two books added together
+        # this is not a very useful method but it is just an example of how to use __add__
+        # we will add the title and author together and return a new object of the class Book
+        new_title = self.title + " & " + other.title
+        new_author = self.author + " & " + other.author
+        new_year = self.year + other.year if self.year and other.year else None
+        new_genre = self.genre + " & " + other.genre if self.genre and other.genre else None
+        new_pages = self.pages + other.pages if self.pages and other.pages else 0
+        new_publisher = self.publisher + " & " + other.publisher if self.publisher and other.publisher else None
+        
+        return Book(new_title, new_author, new_year, new_genre, new_pages, new_publisher)
+
+    # this method will print the book info
+    def print_info(self):
+        print(f'Title: {self.title}, Author: {self.author}, Year: {self.year}, Genre: {self.genre}, Pages: {self.pages}, Publisher: {self.publisher}')
+        # let's add return self to all methods that return None
+        # we will gain chaining of methods
+        # so we can call the methods one after another
+        return self
+
+    # let's define a method to change publisher of the book
+    def change_publisher(self, new_publisher, verbose = False):
+        # this method will change the publisher of the book
+        # here we could add some extra logic to check if publisher is valid or not
+        self.publisher = new_publisher
+        if verbose:
+            print(f'Publisher changed to: {self.publisher}')
+        return self
+
+    # let's make a set year method
+    def set_year(self, year):
+        # this method will set the year of the book
+        # here we could add some extra logic to check if year is valid or not
+        self.year = year
+        return self
+
+    # let's make a method to add year to the book
+    def add_year(self, years=1):
+        # this method will add years to the year of the book
+        # here we could add some extra logic to check if years is valid or not
+        if self.year:
+            self.year += years
+        # again return self to gain chaining of methods
+        return self
+
+
+# let's create a new book
+wizard_of_oz = Book('The Wizard of Oz', 'L. Frank Baum', 1900, 'Fantasy', 154, 'George M. Hill Company')
+# wizard_of_oz.print_info() # Title: The Wizard of Oz, Author: L. Frank Baum, Year: 1900, Genre: Fantasy, Pages: 154, Publisher: George M. Hill Company
+spriditis = Book('Spriditis', 'Anna Brigadere', 1912, 'Fantasy', 200, 'Zvaigzne ABC')
+# spriditis.print_info() # Title: Spriditis, Author: Anna Brigadere, Year: 1912, Genre: Fantasy, Pages: 200, Publisher: Zvaigzne ABC
+
+# now let's see what happens if I print spriditis
+# by default the information is not very useful - it is some memory address
+# this is because the class does not have a __str__ method defined
+print(spriditis) # <__main__.Book object at 0x7f8c3c0e5d90>
+
+# now I can make a franken book by adding the two books together
+franken_book = wizard_of_oz + spriditis
+
+# so key with dunder methods is that they are called automatically by Python when we use certain operations on the objects of the class
+# we want to make them semantically correct and useful
+
+# now we might want to modify some data in the class
+# we could do this directly but this is not a good practice
+# instead let's define some methods to modify the data in the class
+# this is called encapsulation - we want to hide the data from the outside world and provide methods to access and modify the data
+
+# let's change the publisher
+spriditis.change_publisher('Zvaigzne ABC', True) # Publisher changed to: Zvaigzne ABC
+
+# let's set year to 2020
+spriditis.set_year(2020)
+# now let's print the book info again
+spriditis.print_info() # Title: Spriditis, Author: Anna Brigadere, Year: 2020, Genre: Fantasy, Pages: 200, Publisher: Zvaigzne ABC
+
+# let's add 5  years to book
+spriditis.add_year(5) # so technically same as spriditis.year += 5
+# now let's print the book info again
+spriditis.print_info() # Title: Spriditis, Author: Anna Brigadere, Year: 1917, Genre: Fantasy, Pages: 200, Publisher: Zvaigzne ABC
+
+
+# now that I've added return self to all methods I can chain the methods together
+# this is called method chaining - we can call the methods one after another
+# so I can do this:
+wizard_of_oz.print_info().change_publisher('Zvaigzne ABC').set_year(1984).add_year(5).print_info()
+# this will change the publisher, set the year and add 5 years to the year and print the book info
