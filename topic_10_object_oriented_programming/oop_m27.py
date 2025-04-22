@@ -241,3 +241,46 @@ spriditis.print_info() # Title: Spriditis, Author: Anna Brigadere, Year: 1917, G
 # so I can do this:
 wizard_of_oz.print_info().change_publisher('Zvaigzne ABC').set_year(1984).add_year(5).print_info()
 # this will change the publisher, set the year and add 5 years to the year and print the book info
+
+# so let's talk briefly about inheritance
+# the idea is to use an existing class as a base class and create a new class that inherits from the base class
+# this is called inheritance - we can create a new class that inherits from the base class and add new attributes and methods to the new class
+
+# let's make a SuperBook class that inherits from the Book class
+# this class will have all the attributes and methods of the Book class and some new attributes and methods
+
+class SuperBook(Book):
+    # this is a special method that is called when we create an object of the class
+    # it is used to initialize the attributes of the class
+    # we could have stuck with original __init__
+    # but in this example we want to add isbn and language attributes to the class
+    def __init__(self, title="", 
+                 author="", 
+                 year=None, 
+                 genre=None, 
+                 pages=0, 
+                 publisher=None,
+                 isbn=None,
+                 language=None):
+        # call the __init__ method of the base class
+        super().__init__(title, author, year, genre, pages, publisher)
+        # we could have done the above init ourselves but we save a lot of code this way
+        # now we can add the new attributes to the class
+        self.isbn = isbn
+        self.language = language
+
+    # now we would also have to redefine print_info method
+    # since we might want to print the new attributes as well
+
+    # now add change language method to the class
+    # this method will change the language of the book
+    def change_language(self, new_language):
+        # this method will change the language of the book
+        # here we could add some extra logic to check if language is valid or not
+        self.language = new_language
+        return self
+
+
+bezmiegs = SuperBook('Bezmiegs', 'Alberts Bels', 1970, 'Fiction', 300, 'Zvaigzne ABC', '978-9934-1234-5', 'Latvian')
+
+
