@@ -140,10 +140,11 @@ except AttributeError as e:
 # we will also add some setters and getters to the class
 
 class Book:
-    # we could have some common attribut for all books
+    # we could have some common attribute for all books
     # so let's say most books are made from paper
     # so we could have a class variable that is shared between all objects of the class
     material = "paper" # this is a class variable, and it is shared between all objects of the class
+    # of course each object can change this variable, but it is not recommended to do so
 
     def __init__(self, title="", author="", year=None, genre="fiction", rating=0):
         print("Creating a new book")
@@ -155,6 +156,34 @@ class Book:
         self.rating = rating
         print(f"Book {self.title} by {self.author} ({self.year}) created")
         print("This book is made of", self.material)
+
+    # let's also create a __str__ method to print the book object
+    # only requirement is that it should return a string
+    # this method is called when we use print on the object
+    def __str__(self):
+        # so we can return a string representation of the object
+        # this is called string representation of the object
+        # and it is used when we print the object
+        # mistake would be to try to print the object directly here
+        return f"BOOK: {self.title} by {self.author} ({self.year})"
+    
+
+    # let's add one more dunder method
+    # let's add greater than method to compare books by rating
+    # this method is called when we use > operator on the object
+    # so we can compare books by rating
+    def __gt__(self, other) -> bool:
+        # so we can compare books by rating
+        # this is called greater than method
+        # and it is used when we use > operator on the object
+        # so we can compare books by rating
+        if not isinstance(other, Book):
+            return NotImplemented
+
+        return self.rating > other.rating # we could of course use more complex logic
+    
+    # similarly I could add less than method to compare books by rating and so on
+    # full list of dunder methods is here: https://docs.python.org/3/reference/datamodel.html#special-method-names
 
     def print_book(self):
         print(f"{self.title} by {self.author} ({self.year})")
@@ -229,3 +258,16 @@ book.print_book().set_rating(4.5).adjust_rating(0.2).set_year(2000).print_book()
 # this is called method chaining, and it is a common pattern in OOP
 # in Python you will see libraries such as Pandas and SQLAlchemy using this pattern a lot
 # so we can create a list of books, and we can use the methods on the objects in the list
+
+# let's try print on book object
+print(book2) 
+# without __str_ method it will print the object reference, which is not very useful
+
+# let's print ratings of both books first
+print(f"Rating of book 1: {book.rating}")
+print(f"Rating of book 2: {book2.rating}")
+
+# now we can compare two books by rating using > operator
+print(f"Is book 1 better than book 2? {book > book2}") 
+# without __gt__ we would have had to do it directly by comparing the rating attribute
+print(f"Is book 1 better than book 2? {book.rating > book2.rating}")
