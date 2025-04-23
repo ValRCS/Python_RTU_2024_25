@@ -133,3 +133,66 @@ print(f"Is numbers_0_11 a superset of num_3_7? {numbers_0_11.issuperset(num_3_7)
 print(f"Is numbers_0_11 a superset of num_3_7? {numbers_0_11 >= num_3_7}")  # this will check if numbers_0_11 is a superset of num_3_7
 # this will check if numbers_0_11 is a strict superset of num_3_7
 print(f"Is numbers_0_11 a strict superset of num_3_7? {numbers_0_11 > num_3_7}")  # this will check if numbers_0_11 is a strict superset of num_3_7
+
+# so let's use union operation to combine two sets
+# union is a set that contains all elements that are in either set
+num_3_9 = num_3_7.union(num_5_9)  # this will create a set of numbers from 3 to 9
+print(f"num_3_9: {num_3_9}")  # this will create a set of numbers from 3 to 9
+# we also have syntactic sugar for this, we can use | operator to combine two sets
+print(f"num_3_7 | num_5_9: {num_3_7 | num_5_9}")  # this will create a set of numbers from 3 to 9
+# this reminds us of || use for or in other languages, like C, C++, Java, etc.
+
+# there is a tiny difference between union and | operator
+# with | operato we NEED to have both sets defined before we can use it
+# with union we can use it on one set and pass any iterable to it such as list, tuple, set, etc.
+
+# now let's use intersection operation to combine two sets
+# intersection is a set that contains all elements that are in both sets
+num_5_7 = num_3_7.intersection(num_5_9)  # this will create a set of numbers from 5 to 7
+print(f"num_5_7: {num_5_7}")  # this will create a set of numbers from 5 to 7
+# we also have syntactic sugar for this, we can use & operator to combine two sets
+# again & reminds us of && use for and in other languages, like C, C++, Java, etc.
+print(f"num_3_7 & num_5_9: {num_3_7 & num_5_9}")  # this will create a set of numbers from 5 to 7
+
+# now we only have left difference and symmetric difference
+# so difference is a set that contains all elements that are in one set but not in the other set
+
+num_3_4 = num_3_7.difference(num_5_9)  # this will create a set of numbers from 3 to 4
+print(f"num_3_4: {num_3_4}")  # this will create a set of numbers from 3 to 4
+# again we have syntactic sugar for this, we can use - operator to combine two sets
+print(f"num_5_9 - num_3_7: {num_5_9 - num_3_7}")  # this will create a set of numbers from 5 to 9
+# this will create a set of numbers from 5 to 9 that are not in num_3_7
+
+# finally we have symmetric difference
+# symmetric difference is a set that contains all elements that are in one set or the other set but not both
+# this is like xor operation in other languages, like C, C++, Java, etc.
+num_3_4_8_9 = num_3_7.symmetric_difference(num_5_9)  # this will create a set of numbers from 3 to 4 and 8 to 9
+print(f"num_3_4_8_9: {num_3_4_8_9}")  # this will create a set of numbers from 3 to 4 and 8 to 9
+
+# we could have used ^ operator to do the same thing
+print(f"num_3_7 ^ num_5_9: {num_3_7 ^ num_5_9}")  # this will create a set of numbers from 3 to 4 and 8 to 9
+
+# note that symmetrical difference is same as union of of two set differences
+print(f"num_3_7 - num_5_9 | num_5_9 - num_3_7: {num_3_7 - num_5_9 | num_5_9 - num_3_7}")  # this will create a set of numbers from 3 to 4 and 8 to 9
+
+# Conclusion
+# Use sets for membership testing, removing duplicates, and set mathematical operations
+
+# Typical use cases for sets:
+# 1. Removing duplicates from a list or a tuple
+# 2. Checking for membership in a collection of elements
+
+# how about some practical examples of set operations
+# let's say we have two lists of students, one for each class
+# and we want to find out which students are in both classes, or which students are in either class
+# or which students are in one class but not the other class
+class_a = ["John", "Mary", "Peter", "Paul", "Anna"]
+class_b = ["Mary", "Paul", "George", "Anna", "Tom"]
+# let's create sets from the lists
+class_a_set = set(class_a)  # this will create a set of students in class A
+class_b_set = set(class_b)  # this will create a set of students in class B
+# now we can use set operations to find out which students are in both classes, or which students are in either class
+print(f"Students in both classes: {class_a_set.intersection(class_b_set)}")  # this will create a set of students in both classes
+print(f"Students in either class: {class_a_set.union(class_b_set)}")  # this will create a set of students in either class
+print(f"Students in class A but not in class B: {class_a_set.difference(class_b_set)}")  # this will create a set of students in class A but not in class B
+print(f"Students in class B but not in class A: {class_b_set.difference(class_a_set)}")  # this will create a set of students in class B but not in class A
