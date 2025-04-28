@@ -42,8 +42,10 @@ class Deck:
 
 # let's test the class
 if __name__ == "__main__":
-    deck = Deck(shuffle=True, seed=42)
+    deck = Deck(shuffle=False, seed=42)
+    print(deck)
+    deck.shuffle()
+    print(deck)
     print(deck.peek())
     print(deck.draw())
     print(deck.draw())
-    print(deck)

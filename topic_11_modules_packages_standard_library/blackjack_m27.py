@@ -25,7 +25,7 @@ def get_hand_value(hand): # hand will be list of tuples (rank, suit)
             aces += 1
             value += 11 # we will handle aces later
         else:
-            value += int(card[0])
+            value += int(card[0]) # this requires that only numbers in the range 2-10 are used as ranks
     # now let's handle aces, if value is over 21, we will subtract 10 for each ace until value is under 21 or we run out of aces
     while value > 21 and aces > 0:
         value -= 10
