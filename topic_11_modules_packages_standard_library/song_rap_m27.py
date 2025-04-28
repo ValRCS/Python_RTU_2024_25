@@ -50,6 +50,9 @@ class Rap(Song):
             for word in words:
                 print(word, drop, end = " ")
             print()
+            # if we did not want end drop we could do this
+            rap_row = " drop ".join()
+            print(rap_row)
         return self
  
  
