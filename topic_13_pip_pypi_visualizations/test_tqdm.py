@@ -19,3 +19,14 @@ counter = 0
 for _ in tqdm(range(10_000_000)):
     counter += 1
 print("Counter:", counter)
+
+long_string = "ABBA" * 100_000
+a_count = 0
+b_count = 0
+for char in tqdm(long_string):
+    if char == "A":
+        a_count += 1
+    elif char == "B":
+        b_count += 1
+print("A count:", a_count) 
+print("B count:", b_count) 
