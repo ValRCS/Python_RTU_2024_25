@@ -173,3 +173,6 @@ topic_13_pip_pypi_visualizations/dice_rolls_3_6_100000.png
 topic_13_pip_pypi_visualizations/dice_rolls_4_6_100000.png
 topic_13_pip_pypi_visualizations/dice_rolls_5_6_100000.png
 topic_13_pip_pypi_visualizations/dice_rolls_6_6_100000.png
+poem_lines.txt
+.gitignore
+topic_12_paths_folders_file_reading_writing/clean_poem_lines.txt
