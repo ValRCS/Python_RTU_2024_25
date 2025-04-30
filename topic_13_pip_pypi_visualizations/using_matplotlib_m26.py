@@ -1,3 +1,6 @@
+# we will be using sinus so need math
+import math # standard library, no need to install it
+
 # let's try importing matplotlib
 try:
     import matplotlib.pyplot as plt
@@ -22,8 +25,25 @@ print(f"x: {x}")
 print(f"y: {y}")
 
 plt.plot(x, y, color="green") # plot x and y
-plt.title("y = 5*x + 4") # set title
+plt.title("y = 5*x + 4\n y2 = x^2\ny3 = 5*sin(x)") # set title
 plt.xlabel("x") # set x label
 plt.ylabel("y") # set y label
 plt.grid() # add grid
+
+# let's add a few more plots
+
+# how about squares?
+y2 = [x_i**2 for x_i in x] # y values
+plt.plot(x, y2, color="blue", linestyle="dashed") # plot x and y
+
+# let's add a long arrow to the plot
+plt.annotate("I am arrow", xy=(x[0], 0), xytext=(x[0], y[0]+10), arrowprops=dict(arrowstyle="->", color="black")) # add arrow
+
+# let's do a sine wave
+
+y3 = []
+for x_i in x:
+    y3.append(math.sin(x_i)*5) # y values
+
+plt.plot(x, y3, color="red", linestyle="dotted") # plot x and y
 plt.show() # show the plot
