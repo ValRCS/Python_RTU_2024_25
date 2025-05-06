@@ -186,3 +186,5 @@ topic_13_pip_pypi_visualizations/dice_7.png
 topic_13_pip_pypi_visualizations/dice_8.png
 topic_14_json_apis/foods.pickle
 .gitignore
+topic_14_json_apis/~$dogs.xlsx
+topic_14_json_apis/dogs.xlsx
