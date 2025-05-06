@@ -15,9 +15,16 @@
         "price": 8.99
     },
     {
+        "name": "tacos",
+        "type": "Mexican",
+        "price": 12.99
+    },
+    {
         "name": "kartupeļi",
         "type": "Latvian",
-        "price": 1.29,
-        "komentārs": "kartupeļi ir garšīgi"
+        "price": 3.99,
+        "description": "Latvian potato dish, often served with sour cream or butter.",
+        "commentfield": "This is a comment field for the Latvian dish.",
+        "rating": 4.5
     }
 ]
