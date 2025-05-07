@@ -22,9 +22,6 @@
     {
         "name": "kartupeļi",
         "type": "Latvian",
-        "price": 3.99,
-        "description": "Latvian potato dish, often served with sour cream or butter.",
-        "commentfield": "This is a comment field for the Latvian dish.",
-        "rating": 4.5
+        "price": [5.99, 6.99, 7.99]
     }
 ]
