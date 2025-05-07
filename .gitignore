@@ -188,3 +188,7 @@ topic_14_json_apis/foods.pickle
 .gitignore
 topic_14_json_apis/~$dogs.xlsx
 topic_14_json_apis/dogs.xlsx
+topic_14_json_apis/dogs_list.json
+.gitignore
+topic_14_json_apis/dogs.json
+topic_14_json_apis/dogs_also.csv
